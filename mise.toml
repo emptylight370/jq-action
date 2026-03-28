@@ -1,4 +1,5 @@
 [tools]
+lefthook = "latest"
 "npm:conventional-changelog-cli" = "latest"
 prettier = "latest"
 
