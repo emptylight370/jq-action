@@ -30,8 +30,7 @@ jobs:
         id: step2
         uses: ./
         with:
-          data: |
-            <<<$(echo '{"name": "query result"}')
+          data: '{"name": "query result"}'
           filter: .name
 
       - name: Get subfolder file data
@@ -45,13 +44,13 @@ jobs:
         id: step4
         uses: ./
         with:
-          data: <<<$(echo '{"c":3,"b":2,"a":1}')
+          data: '{"c":3,"b":2,"a":1}'
           filter: .
           options: --indent 0 --sort-keys
 
       - name: Show output
         run: |
-          echo ${{ steps.step1.outputs.result }}
-          echo ${{ steps.step2.outputs.result }}
-          echo ${{ steps.step3.outputs.result }}
-          echo ${{ steps.step4.outputs.result }}
+          echo Step 1: ${{ steps.step1.outputs.result }}
+          echo Step 2: ${{ steps.step2.outputs.result }}
+          echo Step 3: ${{ steps.step3.outputs.result }}
+          echo Step 4: ${{ steps.step4.outputs.result }}

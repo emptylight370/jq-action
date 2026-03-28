@@ -43,6 +43,21 @@ runs:
           OPTIONS="${{ inputs.options }}"
         fi
 
-        RESULT=$(jq $RAW_FLAG $OPTIONS '${{ inputs.filter }}' "${{ inputs.data }}")
+        # 检查文件是否存在
+        if [ ! -f "${{ inputs.data }}" ]; then
+          # 检查是否为合法 json 字符串
+          echo "${{ inputs.data }}" | jq . > /dev/null 2>&1
+          if [ $? -ne 0 ]; then
+            echo "::error::File '${{ inputs.data }}' does not exist."
+            echo "::error::String '${{ inputs.data }}' is not a valid json."
+            exit 1
+          fi
+          # 是合法 json 字符串
+          RESULT=$(echo "${{ inputs.data }}" | jq $RAW_FLAG $OPTIONS '${{ inputs.filter }}')
+        else
+          # 文件存在
+          RESULT=$(jq $RAW_FLAG $OPTIONS '${{ inputs.filter }}' "${{ inputs.data }}")
+        fi
+
 
         echo "result=$RESULT" >> $GITHUB_OUTPUT
