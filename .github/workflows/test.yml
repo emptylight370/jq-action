@@ -1,0 +1,47 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - action.yml
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Get metadata
+        id: step1
+        uses: ./
+        with:
+          data: metadata.json
+          filter: .version
+
+      - name: Get json string data
+        id: step2
+        uses: ./
+        with:
+          data: '{"name": "query result"}'
+          filter: .name
+
+      - name: Get subfolder file data
+        id: step3
+        uses: ./
+        with:
+          data: test/theme.json
+          filter: .version
+
+      - name: Show output
+        run: |
+          echo ${{ steps.step1.outputs.result }}
+          echo ${{ steps.step2.outputs.result }}
+          echo ${{ steps.step3.outputs.result }}
