@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/emptylight370/jq-action/compare/v1.0.1...v1.0.2) (2026-03-28)
+
+### 🛠️ Build system | 构建系统
+
+- Auto tag and push task ([1390798](https://github.com/emptylight370/jq-action/commit/13907982fd21c75d26e763bf94d4b30103a887f7))
+- Recreate major version tag and push ([aa14f2c](https://github.com/emptylight370/jq-action/commit/aa14f2c86826f2c58d5435eb5bcfd120bc2db080))
+
 ## [1.0.1](https://github.com/emptylight370/jq-action/compare/v1.0.0...v1.0.1) (2026-03-28)
 
 ### ✨ Features | 功能
