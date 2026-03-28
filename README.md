@@ -7,7 +7,7 @@ Run jq command in GitHub Actions and return process result.
 
 | Name      | Required | Default | Description                                                                            |
 | --------- | -------- | ------- | -------------------------------------------------------------------------------------- |
-| `data`    | ✅ Yes   | -       | The JSON file path to process                                                          |
+| `data`    | ✅ Yes   | -       | The JSON file path or JSON string to be processed                                      |
 | `filter`  | ✅ Yes   | -       | jq filter expression, see [jq documentation](https://jqlang.org/manual/#basic-filters) |
 | `raw`     | ❌ No    | `true`  | Raw output mode. Set to `true` to return non-JSON string(with `-r` symbol).            |
 | `options` | ❌ No    | -       | The options to jq command. see [jq options](https://jqlang.org/manual/#invoking-jq)    |
