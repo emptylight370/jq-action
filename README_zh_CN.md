@@ -1,7 +1,15 @@
 [English](README.md)
 | **简体中文**
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/emptylight370/jq-action/test.yml?style=plastic&label=test&link=https%3A%2F%2Fgithub.com%2Femptylight370%2Fjq-action%2Factions%2Fworkflows%2Ftest.yml)
+![GitHub Release](https://img.shields.io/github/v/release/emptylight370/jq-action?style=plastic&link=https%3A%2F%2Fgithub.com%2Femptylight370%2Fjq-action)
+![GitHub Repo stars](https://img.shields.io/github/stars/emptylight370/jq-action?link=https%3A%2F%2Fgithub.com%2Femptylight370%2Fjq-action)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/emptylight370/jq-action/latest?style=plastic&link=https%3A%2F%2Fgithub.com%2Femptylight370%2Fjq-action)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/emptylight370/jq-action?style=plastic&link=https%3A%2F%2Fgithub.com%2Femptylight370%2Fjq-action)
+
 在 GitHub Actions 中运行 jq 命令并返回处理结果。
+
+---
 
 ## 输入参数
 
