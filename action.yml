@@ -45,7 +45,7 @@ runs:
 
         # 检查文件是否存在
         if [ ! -f "${{ inputs.data }}" ]; then
-          echo "::error::File '${{ inputs.data }}' is not exist."
+          echo "::error::File '${{ inputs.data }}' does not exist."
           exit 1
         fi
 
