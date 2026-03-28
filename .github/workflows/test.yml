@@ -30,7 +30,8 @@ jobs:
         id: step2
         uses: ./
         with:
-          data: '{"name": "query result"}'
+          data: |
+            <<<$(echo '{"name": "query result"}')
           filter: .name
 
       - name: Get subfolder file data
