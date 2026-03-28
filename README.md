@@ -43,3 +43,7 @@ jobs:
       - name: Output
         run: echo "Version is ${{ steps.version.outputs.result }}"
 ```
+
+### Complex usage
+
+See [test.yml](.github/workflows/test.yml) file. The outputs are in [actions](https://github.com/emptylight370/jq-action/actions/workflows/test.yml).
