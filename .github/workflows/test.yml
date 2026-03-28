@@ -30,9 +30,9 @@ jobs:
         id: step2
         uses: ./
         with:
-          data: <<<$(echo '{"c":3,"b":2,"a":1}')
-          filter: .
-          options: --indent 0 --sort-keys
+          data: |
+            <<<$(echo '{"name": "query result"}')
+          filter: .name
 
       - name: Get subfolder file data
         id: step3
@@ -41,8 +41,17 @@ jobs:
           data: test/theme.json
           filter: .version
 
+      - name: Sort json string data
+        id: step4
+        uses: ./
+        with:
+          data: <<<$(echo '{"c":3,"b":2,"a":1}')
+          filter: .
+          options: --indent 0 --sort-keys
+
       - name: Show output
         run: |
           echo ${{ steps.step1.outputs.result }}
           echo ${{ steps.step2.outputs.result }}
           echo ${{ steps.step3.outputs.result }}
+          echo ${{ steps.step4.outputs.result }}

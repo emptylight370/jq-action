@@ -45,8 +45,12 @@ runs:
 
         # 检查文件是否存在
         if [ ! -f "${{ inputs.data }}" ]; then
-          echo "::error::File '${{ inputs.data }}' does not exist."
-          exit 1
+          # 检查是否为合法json字符串
+          echo "${{ inputs.data }}" | jq . > /dev/null 2>&1
+          if [ $? -ne 0 ]; then
+            echo "::error::File '${{ inputs.data }}' does not exist."
+            exit 1
+          fi
         fi
 
         RESULT=$(jq $RAW_FLAG $OPTIONS '${{ inputs.filter }}' "${{ inputs.data }}")
