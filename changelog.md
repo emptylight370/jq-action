@@ -1,3 +1,15 @@
+## [1.0.3](https://github.com/emptylight370/jq-action/compare/v1.0.2...v1.0.3) (2026-03-28)
+
+### 📄 Documentation | 文档
+
+- Update docs ([5a5e862](https://github.com/emptylight370/jq-action/commit/5a5e862bc4098de6e706540597025e6679af1449))
+- Update usage documentation ([c904e26](https://github.com/emptylight370/jq-action/commit/c904e2600938513071301fee1e87a2c0f2896ef0))
+
+### 🛠️ Build system | 构建系统
+
+- Auto create release on push tag ([68ea63a](https://github.com/emptylight370/jq-action/commit/68ea63a50d45fad2b173bc9492d7af6e212b854b))
+- Fix workflow permission ([91d7b58](https://github.com/emptylight370/jq-action/commit/91d7b58b405ed413df934c6d5b0d51c350e3b578))
+
 ## [1.0.2](https://github.com/emptylight370/jq-action/compare/v1.0.1...v1.0.2) (2026-03-28)
 
 ### 🛠️ Build system | 构建系统
