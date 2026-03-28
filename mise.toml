@@ -1,2 +1,11 @@
 [tools]
+"npm:conventional-changelog-cli" = "latest"
 prettier = "latest"
+
+[tasks.changelog]
+description = "Generate changelog via git history"
+run = [
+  "conventional-changelog -i changelog.md -s -n changelog.json -k metadata.json",
+  "prettier -w changelog.md",
+  "git add changelog.md",
+]
