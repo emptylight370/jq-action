@@ -1,0 +1,49 @@
+[tools]
+prettier = "latest"
+
+[tasks.push-latest-major]
+description = "Auto-detect and push latest major version tag to GitHub"
+run = '''
+#!/usr/bin/env bash
+set -e
+
+# 获取所有主版本标签（v1, v2, v3 等）
+MAJOR_TAGS=$(git tag --list 'v[0-9]*' | grep -E '^v[0-9]+$' | sort -V)
+
+if [ -z "$MAJOR_TAGS" ]; then
+  echo "No major version tags found"
+  exit 0
+fi
+
+# 获取最新的主版本标签
+LATEST_MAJOR_TAG=$(echo "$MAJOR_TAGS" | tail -n 1)
+MAJOR_VERSION=$(echo "$LATEST_MAJOR_TAG" | sed 's/^v//')
+
+echo "Latest major version: $LATEST_MAJOR_TAG"
+
+# 获取该主版本下的最新具体版本标签
+LATEST_VERSION_TAG=$(git tag --list "v${MAJOR_VERSION}.*" | sort -V | tail -n 1)
+
+if [ -z "$LATEST_VERSION_TAG" ]; then
+  echo "No version tags found for $LATEST_MAJOR_TAG"
+  exit 1
+fi
+
+echo "Latest version tag: $LATEST_VERSION_TAG"
+
+# 创建或更新主版本标签
+if git rev-parse "$LATEST_MAJOR_TAG" >/dev/null 2>&1; then
+  echo "Updating $LATEST_MAJOR_TAG to point to $LATEST_VERSION_TAG..."
+  git tag -f "$LATEST_MAJOR_TAG" "$LATEST_VERSION_TAG"
+else
+  echo "Creating $LATEST_MAJOR_TAG pointing to $LATEST_VERSION_TAG..."
+  git tag "$LATEST_MAJOR_TAG" "$LATEST_VERSION_TAG"
+fi
+
+# 推送到 GitHub
+echo "Pushing $LATEST_MAJOR_TAG to GitHub..."
+git push -f origin "$LATEST_MAJOR_TAG"
+
+echo ""
+echo "✅ Successfully synced $LATEST_MAJOR_TAG -> $LATEST_VERSION_TAG"
+'''
