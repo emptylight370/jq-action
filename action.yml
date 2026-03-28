@@ -52,7 +52,7 @@ runs:
         # 检查是否为存在的文件
         elif [ -f "$INPUT_DATA" ]; then
           # 是存在的文件
-          RESULT=$(jq $RAW_FLAG $OPTIONS '${{ inputs.filter }}' '$INPUT_DATA')
+          RESULT=$(jq $RAW_FLAG $OPTIONS '${{ inputs.filter }}' "$INPUT_DATA")
         else
           echo "::error::Input '$INPUT_DATA' is neither a valid JSON string nor an existing file."
           exit 1
