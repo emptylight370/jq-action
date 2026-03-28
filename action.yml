@@ -1,0 +1,54 @@
+name: Run jq
+author: emptylight
+description: Run jq on input file and return jq outputs
+
+inputs:
+  data:
+    description: Run jq on this file.
+    required: true
+
+  filter:
+    description: The jq selector. see https://jqlang.org/manual/#basic-filters
+    required: true
+
+  raw:
+    default: 'true'
+    description: Raw output, not json string. In complex output, set to false and manually parse the JSON string.
+    required: false
+
+  options:
+    description: The options to append to jq command. see https://jqlang.org/manual/#invoking-jq
+    required: false
+
+outputs:
+  result:
+    description: The jq result.
+    value: ${{ steps.runjq.outputs.result }}
+
+runs:
+  # For more on composite actions, see:
+  # https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
+  using: composite
+  steps:
+    - id: runjq
+      shell: bash
+      run: |
+        RAW_FLAG=""
+        if [ "${{ inputs.raw }}" == "true" ]; then
+          RAW_FLAG="-r"
+        fi
+
+        OPTIONS=""
+        if [ -n "${{ inputs.options }}" ]; then
+          OPTIONS="${{ inputs.options }}"
+        fi
+
+        # 检查文件是否存在
+        if [ ! -f "${{ inputs.data }}" ]; then
+          echo "::error::File '${{ inputs.data }}' is not exist."
+          exit 1
+        fi
+
+        RESULT=$(jq $RAW_FLAG $OPTIONS '${{ inputs.filter }}' "${{ inputs.data }}")
+
+        echo "result=$RESULT" >> $GITHUB_OUTPUT
