@@ -6,7 +6,10 @@ on:
       - main
     paths:
       - action.yml
+      - .github/workflows/test.yml
   workflow_dispatch:
+  schedule:
+    - cron: 0 0 1 * *
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
