@@ -22,28 +22,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Get metadata
+      - name: 'Step 1: Get metadata'
         id: step1
         uses: ./
         with:
           data: metadata.json
           filter: .version
 
-      - name: Get json string data
+      - name: 'Step 2: Get json string data'
         id: step2
         uses: ./
         with:
           data: '{"name": "query result"}'
           filter: .name
 
-      - name: Get subfolder file data
+      - name: 'Step 3: Get subfolder file data'
         id: step3
         uses: ./
         with:
           data: test/theme.json
           filter: .version
 
-      - name: Sort json string data
+      - name: 'Step 4: Sort json string data'
         id: step4
         uses: ./
         with:
@@ -51,9 +51,18 @@ jobs:
           filter: .
           options: --indent 0 --sort-keys
 
+      - name: 'Step 5: Multiline output'
+        id: step5
+        uses: ./
+        with:
+          data: '{"items": ["a", "b", "c"]}'
+          filter: '.items[]'
+          multiline: true
+
       - name: Show output
         run: |
           echo Step 1: ${{ steps.step1.outputs.result }}
           echo Step 2: ${{ steps.step2.outputs.result }}
           echo Step 3: ${{ steps.step3.outputs.result }}
           echo Step 4: ${{ steps.step4.outputs.result }}
+          echo Step 5: ${{ steps.step5.outputs.result }}

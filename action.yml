@@ -4,7 +4,7 @@ description: Run jq on input file and return jq outputs
 
 inputs:
   data:
-    description: Run jq on this file.
+    description: Run jq on this file or json string.
     required: true
 
   filter:
@@ -14,6 +14,11 @@ inputs:
   raw:
     default: 'true'
     description: Raw output, not json string. In complex output, set to false and manually parse the JSON string.
+    required: false
+
+  multiline:
+    default: 'false'
+    description: Set multiline output in $GITHUB_OUTPUT.
     required: false
 
   options:
@@ -58,4 +63,10 @@ runs:
           exit 1
         fi
 
-        echo "result=$RESULT" >> $GITHUB_OUTPUT
+        if [ "${{ inputs.multiline }}" == "true" ]; then
+          echo "result<<EOFJQMULTILINEDELIMITER" >> $GITHUB_OUTPUT
+          echo "$RESULT" >> $GITHUB_OUTPUT
+          echo "EOFJQMULTILINEDELIMITER" >> $GITHUB_OUTPUT
+        else
+          echo "result=$RESULT" >> $GITHUB_OUTPUT
+        fi
