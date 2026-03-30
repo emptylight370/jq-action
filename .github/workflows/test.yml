@@ -67,6 +67,6 @@ jobs:
           echo Step 4: ${{ steps.step4.outputs.result }}
           echo Step 5:
           step5_results = ${{ steps.step5.outputs.result }}
-          for result in step5_results; do
+          for result in $step5_results; do
             echo result
           done
