@@ -1,3 +1,13 @@
+## [1.1.0](https://github.com/emptylight370/jq-action/compare/v1.0.3...v1.1.0) (2026-03-30)
+
+### ✨ Features | 功能
+
+- 添加多行输出 ([88d9efd](https://github.com/emptylight370/jq-action/commit/88d9efd65c5c9f78aa9faeaa63315d99896a92cb))
+
+### 📄 Documentation | 文档
+
+- Add badge ([af3b1c0](https://github.com/emptylight370/jq-action/commit/af3b1c0328f0c7e244e55bc9afe0ef05ee322cc0))
+
 ## [1.0.3](https://github.com/emptylight370/jq-action/compare/v1.0.2...v1.0.3) (2026-03-28)
 
 ### 📄 Documentation | 文档
