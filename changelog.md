@@ -1,3 +1,14 @@
+## [1.1.1](https://github.com/emptylight370/jq-action/compare/v1.1.0...v1.1.1) (2026-04-04)
+
+### ✨ Features | 功能
+
+- 生成随机多行分隔符 ([36e9927](https://github.com/emptylight370/jq-action/commit/36e992798b3e1f803829749395d9ad5b70df9e3d))
+
+### 📄 Documentation | 文档
+
+- 处理表格内文本 ([0bd2f09](https://github.com/emptylight370/jq-action/commit/0bd2f098f2a8825ea289b2c6738476a9c38de82a))
+- 空输入 ([4761ff8](https://github.com/emptylight370/jq-action/commit/4761ff83f260437c3100c4157bc255177fe1bb30))
+
 ## [1.1.0](https://github.com/emptylight370/jq-action/compare/v1.0.3...v1.1.0) (2026-03-30)
 
 ### ✨ Features | 功能
