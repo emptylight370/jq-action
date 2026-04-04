@@ -21,6 +21,9 @@
 | `multiline` | ❌ 否 | boolean | `false` | 输出多行文本到 $GITHUB_OUTPUT。                                                  |
 | `options`   | ❌ 否 | string  | -       | 追加到 jq 命令的额外选项。参考 [jq 选项](https://jqlang.org/manual/#invoking-jq) |
 
+> [!TIP]
+> 在需要传入 `--null-input` 选项时，请将 `data` 参数设置为 `'null'`。此时不需要再传入 `--null-input` 选项。
+
 ## 输出参数
 
 | 输出名   | 描述              |

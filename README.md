@@ -21,6 +21,9 @@ Run jq command in GitHub Actions and return process result.
 | `multiline` | ❌ No    | boolean | `false` | Output multiline text to $GITHUB_OUTPUT.                                               |
 | `options`   | ❌ No    | string  | -       | The options to jq command. see [jq options](https://jqlang.org/manual/#invoking-jq)    |
 
+> [!TIP]
+> When you need to pass `--null-input` option, please set `data` parameter to `'null'`. Then you don't need to pass `--null-input` option.
+
 ## Outputs
 
 | Name     | Description              |
