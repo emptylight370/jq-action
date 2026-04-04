@@ -64,9 +64,10 @@ runs:
         fi
 
         if [ "${{ inputs.multiline }}" == "true" ]; then
-          echo "result<<EOFJQMULTILINEDELIMITER" >> $GITHUB_OUTPUT
+          DELIMITER="JQMULTILINE$$_$(date +%s%N 2>/dev/null || date +%s)"
+          echo "result<<${DELIMITER}" >> $GITHUB_OUTPUT
           echo "$RESULT" >> $GITHUB_OUTPUT
-          echo "EOFJQMULTILINEDELIMITER" >> $GITHUB_OUTPUT
+          echo "${DELIMITER}" >> $GITHUB_OUTPUT
         else
           echo "result=$RESULT" >> $GITHUB_OUTPUT
         fi
