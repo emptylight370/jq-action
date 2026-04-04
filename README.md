@@ -17,8 +17,8 @@ Run jq command in GitHub Actions and return process result.
 | ----------- | -------- | ------- | ------- | -------------------------------------------------------------------------------------- |
 | `data`      | ✅ Yes   | string  | -       | The JSON file path or JSON string to be processed                                      |
 | `filter`    | ✅ Yes   | string  | -       | jq filter expression, see [jq documentation](https://jqlang.org/manual/#basic-filters) |
-| `raw`       | ❌ No    | boolean | `true`  | Raw output mode. Set to `true` to return non-JSON string(with `-r` symbol).            |
-| `multiline` | ❌ No    | boolean | `false` | Output multiline text to $GITHUB_OUTPUT.                                               |
+| `raw`       | ❌ No    | boolean | `true`  | Raw output mode. Set to `true` to return non-JSON string(with `-r` symbol)             |
+| `multiline` | ❌ No    | boolean | `false` | Output multiline text to $GITHUB_OUTPUT                                                |
 | `options`   | ❌ No    | string  | -       | The options to jq command. see [jq options](https://jqlang.org/manual/#invoking-jq)    |
 
 > [!TIP]
