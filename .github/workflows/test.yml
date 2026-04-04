@@ -65,6 +65,7 @@ jobs:
         with:
           data: 'null'
           filter: '{a:1}'
+          options: --compact-output
 
       - name: Show output
         run: |
