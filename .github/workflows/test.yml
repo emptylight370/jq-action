@@ -59,6 +59,13 @@ jobs:
           filter: '.items[]'
           multiline: true
 
+      - name: 'Step 6: Null input'
+        id: step6
+        uses: ./
+        with:
+          data: 'null'
+          filter: '{a:1}'
+
       - name: Show output
         run: |
           echo Step 1: ${{ steps.step1.outputs.result }}
@@ -70,3 +77,4 @@ jobs:
           for result in $step5_results; do
             echo "$result"
           done
+          echo Step 6: ${{ steps.step6.outputs.result }}
