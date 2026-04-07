@@ -49,15 +49,16 @@ runs:
         fi
 
         INPUT_DATA='${{ inputs.data }}'
+        INPUT_FILTER='${{ inputs.filter }}'
 
         # 检查是否为合法 JSON 字符串
         if echo "$INPUT_DATA" | jq . > /dev/null 2>&1; then
           # 是合法的 JSON 字符串
-          RESULT=$(echo "$INPUT_DATA" | jq $RAW_FLAG $OPTIONS '${{ inputs.filter }}')
+          RESULT=$(echo "$INPUT_DATA" | jq "$RAW_FLAG" "$OPTIONS" "$INPUT_FILTER")
         # 检查是否为存在的文件
         elif [ -f "$INPUT_DATA" ]; then
           # 是存在的文件
-          RESULT=$(jq $RAW_FLAG $OPTIONS '${{ inputs.filter }}' "$INPUT_DATA")
+          RESULT=$(jq "$RAW_FLAG" "$OPTIONS" "$INPUT_FILTER" "$INPUT_DATA")
         else
           echo "::error::Input '$INPUT_DATA' is neither a valid JSON string nor an existing file."
           exit 1
