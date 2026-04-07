@@ -38,7 +38,7 @@ runs:
       shell: bash
       run: |
         RAW_FLAG=""
-        if [ "${{ inputs.raw }}" == "true" ]; then
+        if [ "${{ inputs.raw }}" = "true" ]; then
           RAW_FLAG="-r"
         fi
 
@@ -64,7 +64,7 @@ runs:
         fi
 
         # 检查 RESULT 是否包含换行符
-        if [[ "$RESULT" == *$'\n'* ]]; then
+        if [[ "$RESULT" = *$'\n'* ]]; then
           # 包含换行符，使用多行输出
           DELIMITER="JQMULTILINE$$_$(date +%s%N 2>/dev/null || date +%s)"
           echo "result<<$DELIMITER" >> $GITHUB_OUTPUT
