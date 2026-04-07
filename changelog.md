@@ -1,3 +1,21 @@
+## [1.2.0](https://github.com/emptylight370/jq-action/compare/v1.1.1...v1.2.0) (2026-04-07)
+
+### ⚠ BREAKING CHANGES
+
+- REMOVE multiline input; ADD multiline output
+
+### ✨ Features | 功能
+
+- Always detect multiline output ([7b69e6f](https://github.com/emptylight370/jq-action/commit/7b69e6fe89d68aaf1c8a331ae5965a7046bc47cd))
+
+### 🐛 Bug Fixes | 问题修复
+
+- jq command error ([a67af02](https://github.com/emptylight370/jq-action/commit/a67af0220c1d3ce80726adf3c21070ebebf2fd13))
+
+### ⚡ Performance | 性能优化
+
+- refactor jq command arguments ([74b7906](https://github.com/emptylight370/jq-action/commit/74b7906c68a38ebff3ca5eb26fa7f9e367d977de))
+
 ## [1.1.1](https://github.com/emptylight370/jq-action/compare/v1.1.0...v1.1.1) (2026-04-04)
 
 ### ✨ Features | 功能
