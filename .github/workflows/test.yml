@@ -55,8 +55,7 @@ jobs:
         with:
           data: '{"c":3,"b":2,"a":1}'
           filter: .
-          raw: false
-          options: --indent 0 --sort-keys -c
+          options: --indent 0 --sort-keys
 
       - name: 'Step 5: Multiline output'
         id: step5
@@ -74,6 +73,7 @@ jobs:
           options: --compact-output
 
       - name: Show output
+        shell: bash
         run: |
           echo Step 1: ${{ steps.step1.outputs.result }}
           echo Step 2: ${{ steps.step2.outputs.result }}
