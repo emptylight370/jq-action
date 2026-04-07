@@ -16,11 +16,6 @@ inputs:
     description: Raw output, not json string. In complex output, set to false and manually parse the JSON string.
     required: false
 
-  multiline:
-    default: 'false'
-    description: Set multiline output in $GITHUB_OUTPUT.
-    required: false
-
   options:
     description: The options to append to jq command. see https://jqlang.org/manual/#invoking-jq
     required: false
@@ -29,6 +24,10 @@ outputs:
   result:
     description: The jq result.
     value: ${{ steps.runjq.outputs.result }}
+
+  multiline:
+    description: Is the jq result is multiline.
+    value: ${{ steps.runjq.outputs.multiline }}
 
 runs:
   # For more on composite actions, see:
@@ -64,11 +63,16 @@ runs:
           exit 1
         fi
 
-        if [ "${{ inputs.multiline }}" == "true" ]; then
+        # 检查 RESULT 是否包含换行符
+        if [[ "$RESULT" == *$'\n'* ]]; then
+          # 包含换行符，使用多行输出
           DELIMITER="JQMULTILINE$$_$(date +%s%N 2>/dev/null || date +%s)"
-          echo "result<<${DELIMITER}" >> $GITHUB_OUTPUT
+          echo "result<<$DELIMITER" >> $GITHUB_OUTPUT
           echo "$RESULT" >> $GITHUB_OUTPUT
-          echo "${DELIMITER}" >> $GITHUB_OUTPUT
+          echo "$DELIMITER" >> $GITHUB_OUTPUT
+          echo "multiline=true" >> $GITHUB_OUTPUT
         else
+          # 不包含换行符，使用普通输出
           echo "result=$RESULT" >> $GITHUB_OUTPUT
+          echo "multiline=false" >> $GITHUB_OUTPUT
         fi

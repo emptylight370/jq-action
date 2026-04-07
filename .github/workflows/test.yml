@@ -57,7 +57,6 @@ jobs:
         with:
           data: '{"items": ["a", "b", "c"]}'
           filter: '.items[]'
-          multiline: true
 
       - name: 'Step 6: Null input'
         id: step6
@@ -73,9 +72,9 @@ jobs:
           echo Step 2: ${{ steps.step2.outputs.result }}
           echo Step 3: ${{ steps.step3.outputs.result }}
           echo Step 4: ${{ steps.step4.outputs.result }}
-          echo Step 5:
+          echo Step 5 is multiline: ${{ steps.step5.outputs.multiline }}
           step5_results="${{ steps.step5.outputs.result }}"
           for result in $step5_results; do
-            echo "$result"
+            echo "Step 5: $result"
           done
           echo Step 6: ${{ steps.step6.outputs.result }}
