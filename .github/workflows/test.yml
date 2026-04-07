@@ -55,7 +55,7 @@ jobs:
         with:
           data: '{"c":3,"b":2,"a":1}'
           filter: .
-          options: --indent 0 --sort-keys
+          options: --indent 0 --sort-keys -c
 
       - name: 'Step 5: Multiline output'
         id: step5
