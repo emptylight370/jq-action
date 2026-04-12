@@ -10,3 +10,8 @@ run = [
   "prettier -w changelog.md",
   "git add changelog.md",
 ]
+
+[prepare.lefthook]
+description = "Install lefthook hooks"
+run = "lefthook install"
+sources = ["lefthook.yml"]
