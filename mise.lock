@@ -39,9 +39,9 @@ checksum = "sha256:bf14d028984d24a72887f4f73d8899f5879c11786f4ba79a81c676fb3cefc
 url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.5/lefthook_2.1.5_Windows_x86_64.gz"
 provenance = "github-attestations"
 
-[[tools."npm:conventional-changelog-cli"]]
-version = "5.0.0"
-backend = "npm:conventional-changelog-cli"
+[[tools."npm:conventional-changelog"]]
+version = "7.2.0"
+backend = "npm:conventional-changelog"
 
 [[tools.prettier]]
 version = "3.8.2"
