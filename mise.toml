@@ -11,7 +11,7 @@ run = [
   "git add changelog.md",
 ]
 
-[prepare.lefthook]
+[deps.lefthook]
 description = "Install lefthook hooks"
 run = "lefthook install"
 sources = ["lefthook.yml"]
