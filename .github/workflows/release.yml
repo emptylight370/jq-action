@@ -15,7 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Generate changelog
+        run: |
+          git cliff -l -o release.md
+          prettier -w release.md
+
       - name: Release
         uses: softprops/action-gh-release@v3
         with:
           make_latest: true
+          body_path: release.md

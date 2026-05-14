@@ -24,8 +24,8 @@
 
 ### 📄 Documentation | 文档
 
-- 处理表格内文本 ([0bd2f09](https://github.com/emptylight370/jq-action/commit/0bd2f098f2a8825ea289b2c6738476a9c38de82a))
 - 空输入 ([4761ff8](https://github.com/emptylight370/jq-action/commit/4761ff83f260437c3100c4157bc255177fe1bb30))
+- 处理表格内文本 ([0bd2f09](https://github.com/emptylight370/jq-action/commit/0bd2f098f2a8825ea289b2c6738476a9c38de82a))
 
 ## [1.1.0](https://github.com/emptylight370/jq-action/compare/v1.0.3...v1.1.0) (2026-03-30)
 
@@ -41,8 +41,8 @@
 
 ### 📄 Documentation | 文档
 
-- Update docs ([5a5e862](https://github.com/emptylight370/jq-action/commit/5a5e862bc4098de6e706540597025e6679af1449))
 - Update usage documentation ([c904e26](https://github.com/emptylight370/jq-action/commit/c904e2600938513071301fee1e87a2c0f2896ef0))
+- Update docs ([5a5e862](https://github.com/emptylight370/jq-action/commit/5a5e862bc4098de6e706540597025e6679af1449))
 
 ### 🛠️ Build system | 构建系统
 

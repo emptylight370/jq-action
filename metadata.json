@@ -1,8 +1,4 @@
 {
   "name": "jq-action",
-  "version": "1.2.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/emptylight370/jq-action.git"
-  }
+  "version": "1.2.0"
 }
