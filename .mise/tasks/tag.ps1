@@ -26,8 +26,8 @@ $existing_tag = git tag -l $major_version
 if ($existing_tag) {
   git tag -d $major_version
   git push origin --delete $major_version
-  git tag -s $major_version -m ""
 }
+git tag -s $major_version -m ""
 
 # 推送主版本标签
 Write-Host "Pushing major version tag to remote: $major_version"
