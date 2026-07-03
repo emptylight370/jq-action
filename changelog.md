@@ -1,3 +1,23 @@
+## [1.2.1](https://github.com/emptylight370/jq-action/compare/v1.2.0...1.2.1) (2026-07-03)
+
+### 🐛 Bug Fixes | 问题修复
+
+- Bump major version resolution ([cccc847](https://github.com/emptylight370/jq-action/commit/cccc84783348fd64a423d08c6621a13442ecc79c))
+- **(cr)** Fix some security issues ([96573a0](https://github.com/emptylight370/jq-action/commit/96573a0307ffe27cc120ff07b9d9dbbd85b83a47))
+
+### 📄 Documentation | 文档
+
+- Update actions/checkout ([baa70b8](https://github.com/emptylight370/jq-action/commit/baa70b814b1791dbf4e68a7c7ade921ba0a3460a))
+
+### 🛠️ Build system | 构建系统
+
+- 迁移到conventional-changelog ([bb32d90](https://github.com/emptylight370/jq-action/commit/bb32d90efbe64d149477c982cf0b73dcf9deba65))
+- 通过git-cliff生成变更日志 ([3574376](https://github.com/emptylight370/jq-action/commit/3574376a6b5491a083c42febf52516414f672b20))
+- Pin actions version and setup dependabot ([d2c972f](https://github.com/emptylight370/jq-action/commit/d2c972f9ee6127845371f48eb022525179530a9c))
+- **(deps)** bump actions/checkout from 6.0.3 to 7.0.0 ([04977f6](https://github.com/emptylight370/jq-action/commit/04977f6c5ce0fd6d2fa5e78fd2027d3a2f04efef))
+- **(deps)** bump softprops/action-gh-release from 3.0.0 to 3.0.1 ([4e3cace](https://github.com/emptylight370/jq-action/commit/4e3cace7d2a7eb9d4b39aa668e06d7170eb4e07c))
+- **(fix)** 调用工具前先安装工具 ([22abcc8](https://github.com/emptylight370/jq-action/commit/22abcc83b0a2ad3541eb155302d63fef91f7e278))
+
 ## [1.2.0](https://github.com/emptylight370/jq-action/compare/v1.1.1...v1.2.0) (2026-04-07)
 
 ### ⚠ BREAKING CHANGES
