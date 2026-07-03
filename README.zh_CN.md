@@ -43,7 +43,7 @@ jobs:
   process:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Run jq
         uses: emptylight370/jq-action@v1
