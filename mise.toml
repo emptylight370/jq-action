@@ -1,4 +1,5 @@
 [tools]
+bun = "latest"
 git-cliff = "latest"
 lefthook = "latest"
 prettier = "latest"
@@ -7,3 +8,6 @@ prettier = "latest"
 description = "Install lefthook hooks"
 run = "lefthook install"
 sources = ["lefthook.yml"]
+
+[settings]
+npm.package_manager = "bun"
