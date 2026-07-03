@@ -12,7 +12,7 @@ inputs:
     required: true
 
   raw:
-    default: 'true'
+    default: "true"
     description: Raw output, not json string. In complex output, set to false and manually parse the JSON string.
     required: false
 
@@ -36,28 +36,36 @@ runs:
   steps:
     - id: runjq
       shell: bash
+      env:
+        INPUT_RAW: ${{ inputs.raw }}
+        INPUT_OPTIONS: ${{ inputs.options }}
+        INPUT_DATA: ${{ inputs.data }}
+        INPUT_FILTER: ${{ inputs.filter }}
       run: |
         RAW_FLAG=""
-        if [ "${{ inputs.raw }}" = "true" ]; then
+        if [ "$INPUT_RAW" = "true" ]; then
           RAW_FLAG="-r"
         fi
 
         OPTIONS=""
-        if [ -n "${{ inputs.options }}" ]; then
-          OPTIONS="${{ inputs.options }}"
+        if [ -n "$INPUT_OPTIONS" ]; then
+          OPTIONS="$INPUT_OPTIONS"
         fi
-
-        INPUT_DATA='${{ inputs.data }}'
-        INPUT_FILTER='${{ inputs.filter }}'
 
         # 检查是否为合法 JSON 字符串
         if echo "$INPUT_DATA" | jq . > /dev/null 2>&1; then
           # 是合法的 JSON 字符串
-          RESULT=$(echo "$INPUT_DATA" | jq $RAW_FLAG $OPTIONS "$INPUT_FILTER")
+          RESULT=$(echo "$INPUT_DATA" | jq $RAW_FLAG $OPTIONS "$INPUT_FILTER") || {
+            echo "::error::jq command failed on JSON input"
+            exit 1
+          }
         # 检查是否为存在的文件
         elif [ -f "$INPUT_DATA" ]; then
           # 是存在的文件
-          RESULT=$(jq $RAW_FLAG $OPTIONS "$INPUT_FILTER" "$INPUT_DATA")
+          RESULT=$(jq $RAW_FLAG $OPTIONS "$INPUT_FILTER" "$INPUT_DATA") || {
+            echo "::error::jq command failed on file '$INPUT_DATA'"
+            exit 1
+          }
         else
           echo "::error::Input '$INPUT_DATA' is neither a valid JSON string nor an existing file."
           exit 1
@@ -66,10 +74,10 @@ runs:
         # 检查 RESULT 是否包含换行符
         if [[ "$RESULT" = *$'\n'* ]]; then
           # 包含换行符，使用多行输出
-          DELIMITER="JQMULTILINE$$_$(date +%s%N 2>/dev/null || date +%s)"
-          echo "result<<$DELIMITER" >> $GITHUB_OUTPUT
-          echo "$RESULT" >> $GITHUB_OUTPUT
-          echo "$DELIMITER" >> $GITHUB_OUTPUT
+          DELIMITER="JQMULTILINE$$_${RANDOM}_$(date +%s)"
+          printf 'result<<%s\n' "$DELIMITER" >> $GITHUB_OUTPUT
+          printf '%s\n' "$RESULT" >> $GITHUB_OUTPUT
+          printf '%s\n' "$DELIMITER" >> $GITHUB_OUTPUT
           echo "multiline=true" >> $GITHUB_OUTPUT
         else
           # 不包含换行符，使用普通输出
