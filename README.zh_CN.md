@@ -13,12 +13,12 @@
 
 ## 输入参数
 
-| 参数名    | 必需  | 类型    | 默认值 | 描述                                                                             |
-| --------- | ----- | ------- | ------ | -------------------------------------------------------------------------------- |
-| `data`    | ✅ 是 | string  | -      | 要处理的 JSON 文件路径或者 JSON 字符串                                           |
-| `filter`  | ✅ 是 | string  | -      | jq 过滤器表达式，参考 [jq 文档](https://jqlang.org/manual/#basic-filters)        |
-| `raw`     | ❌ 否 | boolean | `true` | 原始输出模式。设置为 `true` 时输出非 JSON 字符串（使用 `-r` 标志）               |
-| `options` | ❌ 否 | string  | -      | 追加到 jq 命令的额外选项。参考 [jq 选项](https://jqlang.org/manual/#invoking-jq) |
+| 参数名    | 必需  | 类型    | 默认值 | 描述                                                                                                                            |
+| --------- | ----- | ------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| `data`    | ✅ 是 | string  | -      | 优先作为 JSON 字符串处理，后作为文件路径处理                                                                                    |
+| `filter`  | ✅ 是 | string  | -      | jq 过滤器表达式，参考 [jq 文档](https://jqlang.org/manual/#basic-filters)                                                       |
+| `raw`     | ❌ 否 | boolean | `true` | 原始输出模式。设置为 `true` 时输出非 JSON 字符串（使用 `-r` 标志）                                                              |
+| `options` | ❌ 否 | string  | -      | 追加到 jq 命令的额外选项。参考 [jq 选项](https://jqlang.org/manual/#invoking-jq)<br/>需注意：输入按空格分割，`"a b"->["a","b"]` |
 
 > [!TIP]
 > 在需要传入 `--null-input` 选项时，请将 `data` 参数设置为 `'null'/"null"`。此时不需要再传入 `--null-input` 选项。

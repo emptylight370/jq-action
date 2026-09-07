@@ -13,12 +13,12 @@ Run jq command in GitHub Actions and return process result.
 
 ## Inputs
 
-| Name      | Required | Type    | Default | Description                                                                            |
-| --------- | -------- | ------- | ------- | -------------------------------------------------------------------------------------- |
-| `data`    | ✅ Yes   | string  | -       | The JSON file path or JSON string to be processed                                      |
-| `filter`  | ✅ Yes   | string  | -       | jq filter expression, see [jq documentation](https://jqlang.org/manual/#basic-filters) |
-| `raw`     | ❌ No    | boolean | `true`  | Raw output mode. Set to `true` to return non-JSON string(with `-r` symbol)             |
-| `options` | ❌ No    | string  | -       | The options to jq command. see [jq options](https://jqlang.org/manual/#invoking-jq)    |
+| Name      | Required | Type    | Default | Description                                                                                                                                                   |
+| --------- | -------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data`    | ✅ Yes   | string  | -       | Processed as a JSON string first, then as a file path if not valid JSON                                                                                       |
+| `filter`  | ✅ Yes   | string  | -       | jq filter expression, see [jq documentation](https://jqlang.org/manual/#basic-filters)                                                                        |
+| `raw`     | ❌ No    | boolean | `true`  | Raw output mode. Set to `true` to return non-JSON string(with `-r` symbol)                                                                                    |
+| `options` | ❌ No    | string  | -       | Extra options appended to the jq command. see [jq options](https://jqlang.org/manual/#invoking-jq)<br/>Note: the input is split by spaces, `"a b"->["a","b"]` |
 
 > [!TIP]
 > When you need to pass `--null-input` option, please set `data` parameter to `'null'/"null"`. Then you don't need to pass `--null-input` option.

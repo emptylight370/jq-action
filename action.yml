@@ -13,7 +13,7 @@ inputs:
 
   raw:
     default: "true"
-    description: Raw output, not json string. In complex output, set to false and manually parse the JSON string.
+    description: Raw output, not json string. In complex output, set to false and manually parse the JSON string. Only "true" means `-r`.
     required: false
 
   options:
@@ -26,7 +26,7 @@ outputs:
     value: ${{ steps.runjq.outputs.result }}
 
   multiline:
-    description: Is the jq result is multiline.
+    description: Whether the jq result is multiline.
     value: ${{ steps.runjq.outputs.multiline }}
 
 runs:
@@ -42,32 +42,37 @@ runs:
         INPUT_DATA: ${{ inputs.data }}
         INPUT_FILTER: ${{ inputs.filter }}
       run: |
-        RAW_FLAG=""
-        if [ "$INPUT_RAW" = "true" ]; then
-          RAW_FLAG="-r"
+        # 归一化 raw 输入（忽略大小写与空白）：仅 "true" 启用 -r，其余值按非 raw 处理
+        RAW_NORMALIZED=$(printf '%s' "$INPUT_RAW" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')
+
+        # 将所有参数转换为数组
+        JQ_ARGS=()
+        if [ "$RAW_NORMALIZED" = "true" ]; then
+          JQ_ARGS+=(-r)
         fi
 
-        OPTIONS=""
+        # 将 options 按空白拆分为数组：read 不做 glob 展开，避免 '*' 被展开为文件名
         if [ -n "$INPUT_OPTIONS" ]; then
-          OPTIONS="$INPUT_OPTIONS"
+          read -ra OPTION_ARGS <<< "$INPUT_OPTIONS"
+          JQ_ARGS+=("${OPTION_ARGS[@]}")
         fi
 
         # 检查是否为合法 JSON 字符串
-        if echo "$INPUT_DATA" | jq . > /dev/null 2>&1; then
+        if printf '%s\n' "$INPUT_DATA" | jq . > /dev/null 2>&1; then
           # 是合法的 JSON 字符串
-          RESULT=$(echo "$INPUT_DATA" | jq $RAW_FLAG $OPTIONS "$INPUT_FILTER") || {
+          RESULT=$(printf '%s\n' "$INPUT_DATA" | jq "${JQ_ARGS[@]}" "$INPUT_FILTER") || {
             echo "::error::jq command failed on JSON input"
             exit 1
           }
         # 检查是否为存在的文件
         elif [ -f "$INPUT_DATA" ]; then
           # 是存在的文件
-          RESULT=$(jq $RAW_FLAG $OPTIONS "$INPUT_FILTER" "$INPUT_DATA") || {
+          RESULT=$(jq "${JQ_ARGS[@]}" "$INPUT_FILTER" "$INPUT_DATA") || {
             echo "::error::jq command failed on file '$INPUT_DATA'"
             exit 1
           }
         else
-          echo "::error::Input '$INPUT_DATA' is neither a valid JSON string nor an existing file."
+          echo "::error::Input is neither a valid JSON string nor an existing file."
           exit 1
         fi
 
@@ -75,12 +80,12 @@ runs:
         if [[ "$RESULT" = *$'\n'* ]]; then
           # 包含换行符，使用多行输出
           DELIMITER="JQMULTILINE$$_${RANDOM}_$(date +%s)"
-          printf 'result<<%s\n' "$DELIMITER" >> $GITHUB_OUTPUT
-          printf '%s\n' "$RESULT" >> $GITHUB_OUTPUT
-          printf '%s\n' "$DELIMITER" >> $GITHUB_OUTPUT
-          echo "multiline=true" >> $GITHUB_OUTPUT
+          printf 'result<<%s\n' "$DELIMITER" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$RESULT" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$DELIMITER" >> "$GITHUB_OUTPUT"
+          printf 'multiline=true\n' >> "$GITHUB_OUTPUT"
         else
           # 不包含换行符，使用普通输出
-          echo "result=$RESULT" >> $GITHUB_OUTPUT
-          echo "multiline=false" >> $GITHUB_OUTPUT
+          printf 'result=%s\n' "$RESULT" >> "$GITHUB_OUTPUT"
+          printf 'multiline=false\n' >> "$GITHUB_OUTPUT"
         fi
