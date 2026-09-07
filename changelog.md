@@ -1,4 +1,19 @@
-## [1.2.1](https://github.com/emptylight370/jq-action/compare/v1.2.0...1.2.1) (2026-07-03)
+## [1.3.0](https://github.com/emptylight370/jq-action/compare/v1.2.1...1.3.0) (2026-09-07)
+
+### 🐛 Bug Fixes | 问题修复
+
+- harden shell quoting and input handling in composite action ([a74691a](https://github.com/emptylight370/jq-action/commit/a74691adf072b8e78cbfc43b0316368544808214))
+
+### 📄 Documentation | 文档
+
+- Add AGENTS.md ([4ca3e1e](https://github.com/emptylight370/jq-action/commit/4ca3e1e5411d8336186e04026441ea046180dccc))
+- 更新jq版本说明 ([d3e63e7](https://github.com/emptylight370/jq-action/commit/d3e63e7b31767444995509458f989fb80b32a844))
+
+### 🛠️ Build system | 构建系统
+
+- **(fix)** Fix release log generation ([6d8c290](https://github.com/emptylight370/jq-action/commit/6d8c290c4a6f0b55a19b10d3722774fc277149f0))
+
+## [1.2.1](https://github.com/emptylight370/jq-action/compare/v1.2.0...v1.2.1) (2026-07-03)
 
 ### 🐛 Bug Fixes | 问题修复
 
