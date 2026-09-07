@@ -4,6 +4,8 @@
 
 This is a **GitHub Action** (repo: `emptylight370/jq-action`) that wraps the `jq` command-line JSON processor. It accepts JSON data (either as a file path or inline JSON string) and a jq filter expression, then returns the processed result via `result` and `multiline` outputs.
 
+The action uses the `jq` version **preinstalled on the GitHub Actions runner** — it does not install jq itself. For the specific jq version, see the README of the corresponding runner image repository (e.g., [actions/runner-images](https://github.com/actions/runner-images)).
+
 ## Development Commands
 
 ### Prerequisites

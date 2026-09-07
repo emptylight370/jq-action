@@ -21,7 +21,7 @@ Run jq command in GitHub Actions and return process result.
 | `options` | ❌ No    | string  | -       | The options to jq command. see [jq options](https://jqlang.org/manual/#invoking-jq)    |
 
 > [!TIP]
-> When you need to pass `--null-input` option, please set `data` parameter to `'null'`. Then you don't need to pass `--null-input` option.
+> When you need to pass `--null-input` option, please set `data` parameter to `'null'/"null"`. Then you don't need to pass `--null-input` option.
 
 ## Outputs
 
@@ -59,3 +59,7 @@ jobs:
 ### Complex usage
 
 See [test.yml](.github/workflows/test.yml) file. The outputs are in [actions](https://github.com/emptylight370/jq-action/actions/workflows/test.yml).
+
+## jq Version
+
+This action uses the `jq` version **preinstalled on the GitHub Actions runner** — it does not install jq itself. For the specific jq version, see the README of the corresponding runner image repository (e.g., [actions/runner-images](https://github.com/actions/runner-images)).

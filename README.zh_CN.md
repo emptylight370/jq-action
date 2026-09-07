@@ -21,7 +21,7 @@
 | `options` | ❌ 否 | string  | -      | 追加到 jq 命令的额外选项。参考 [jq 选项](https://jqlang.org/manual/#invoking-jq) |
 
 > [!TIP]
-> 在需要传入 `--null-input` 选项时，请将 `data` 参数设置为 `'null'`。此时不需要再传入 `--null-input` 选项。
+> 在需要传入 `--null-input` 选项时，请将 `data` 参数设置为 `'null'/"null"`。此时不需要再传入 `--null-input` 选项。
 
 ## 输出参数
 
@@ -59,3 +59,7 @@ jobs:
 ### 复杂用法
 
 见 [test.yml](.github/workflows/test.yml) 文件。相关输出见 [actions](https://github.com/emptylight370/jq-action/actions/workflows/test.yml)。
+
+## jq 版本
+
+本 action 使用 GitHub Actions 运行器中**预装**的 jq 版本——不会自行安装 jq。具体版本请参考对应运行器镜像仓库（如 [actions/runner-images](https://github.com/actions/runner-images)）的 README。
