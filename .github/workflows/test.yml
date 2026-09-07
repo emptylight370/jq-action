@@ -22,34 +22,34 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-26, windows-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: 'Step 1: Get metadata'
+      - name: "Step 1: Get metadata"
         id: step1
         uses: ./
         with:
           data: metadata.json
           filter: .version
 
-      - name: 'Step 2: Get json string data'
+      - name: "Step 2: Get json string data"
         id: step2
         uses: ./
         with:
           data: '{"name": "query result"}'
           filter: .name
 
-      - name: 'Step 3: Get subfolder file data'
+      - name: "Step 3: Get subfolder file data"
         id: step3
         uses: ./
         with:
           data: test/theme.json
           filter: .version
 
-      - name: 'Step 4: Sort json string data'
+      - name: "Step 4: Sort json string data"
         id: step4
         uses: ./
         with:
@@ -57,19 +57,19 @@ jobs:
           filter: .
           options: --indent 0 --sort-keys -c
 
-      - name: 'Step 5: Multiline output'
+      - name: "Step 5: Multiline output"
         id: step5
         uses: ./
         with:
           data: '{"items": ["a", "b", "c"]}'
-          filter: '.items[]'
+          filter: ".items[]"
 
-      - name: 'Step 6: Null input'
+      - name: "Step 6: Null input"
         id: step6
         uses: ./
         with:
-          data: 'null'
-          filter: '{a:1}'
+          data: "null"
+          filter: "{a:1}"
           options: --compact-output
 
       - name: Show output
